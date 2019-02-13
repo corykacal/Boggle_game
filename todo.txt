@@ -1,0 +1,8 @@
+1. create trie datastructre in javascript
+2. write javascript unit test
+3. write game logic
+4. test game logic with unit test
+5. write boggle solver using trie and backwards recursion
+6. write html page
+7. test html game with selenium unit test
+8. add score board with simple database
