@@ -9,51 +9,54 @@
  */
 class TrieNode {
 
+
     constructor() {
-        //Array to get it working. impliment a dictionary later
-        //Preallocated array has time complexity but horrible space
-        //Array has bad time but good space
-        //dictionary has both
         this.children = new Array(26);
     }
 
 
-contains(character) {
-    var value = this.getAlphabetValue(character);
-    return this.children[value] != undefined;
+    contains(character) {
+        var value = this.getAlphabetValue(character);
+        return this.children[value] != undefined;
+    }
+
+    add(character) {
+        this.children.push(character);
+        this.children[this.getAlphabetValue(character)] = new TrieNode();
+    }
+
+    get(character) {
+        var value = this.getAlphabetValue(character);
+        return this.children[value];
+    }
+
+
+    remove(character) {
+        var alphabetValue = this.getAlphabetValue(character);
+        this.children[alphabetValue] = undefined;
+
+    }
+
+    getAlphabetValue(character) {
+        var asciiValue = character.charCodeAt(0);
+        var alphabetValue = asciiValue - 61;
+        return alphabetValue;
+    }
+
 }
 
-add(character) {
-    this.children.push(character);
-    this.children[this.getAlphabetValue(character)] = new TrieNode();
-}
 
-get(character) {
-    var value = this.getAlphabetValue(character);
-    return this.children[value];
-}
-
-
-remove(character) {
-    var alphabetValue = this.getAlphabetValue(character);
-    this.children[alphabetValue] = undefined;
-
-}
-
-getAlphabetValue(character) {
-    var asciiValue = character.charCodeAt(0);
-    var alphabetValue = asciiValue - 61;
-    return alphabetValue;
-}
-
-}
 class Trie
 {
+
+
     constructor()
     {
         this.rootTrieNode = new TrieNode();
     }
-    add(String)
+
+
+    add(string)
     {
         var recursiveAdd = function(string, node) {
             if(string.length == 0)
@@ -69,8 +72,10 @@ class Trie
 
 
         }
-        recursiveAdd(String, this.rootTrieNode);
+        recursiveAdd(string, this.rootTrieNode);
     }
+
+
     contains(string)
     {
         var recursiveContains = function(string, node) {
@@ -93,10 +98,20 @@ class Trie
         }
         return recursiveContains(string, this.rootTrieNode);
     }
+
+
+    /*
+     * use recusion as a way to have the parent communicate with the children.
+     * The child will return whether it should be deleted or not after it
+     * evaluates its own children. The parent will then remove it or not and then
+     * tell its parents what to do.
+     */
     remove(TrieNode)
     {
 
     }
+
+
 }
 
 
