@@ -23,14 +23,24 @@ $(document).ready(function(){
 
 
 	$('.game').on('tap','#submit',function(){
-        console.log($('#word-box').val());
-        $('#word-box').val('');
+        reset_box();
 	});
 
+    $('#word-box').keypress(function(event) {
+        if(event.keyCode == 13 || event.which == 13) {
+            reset_box();
+        }
+    });
 
 
 
 });
+
+
+function reset_box() {
+    console.log($('#word-box').val());
+    $('#word-box').val('');
+}
 
 
 function load_board(size) {
