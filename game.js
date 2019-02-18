@@ -45,7 +45,7 @@ $(document).ready(function(){
 });
 
 function add_to_word_box(letter) {
-    current_text+=letter;
+    current_text+=letter.toLowerCase();
     $('#word-box').val(current_text);
 }
 
