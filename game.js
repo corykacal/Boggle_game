@@ -20,6 +20,16 @@ $(document).ready(function(){
 		//$('.controls').delay(500).fadeIn();
         $('.game').delay(500).fadeIn();
 	});
+
+
+	$('.game').on('tap','#submit',function(){
+        console.log($('#word-box').val());
+        $('#word-box').val('');
+	});
+
+
+
+
 });
 
 
@@ -65,31 +75,6 @@ function load_board(size) {
 
 }
 
-/*
-<tbody style="font-size: 32px;">
-    <tr>
-    <td style="width: 58px; height: 58px;">O</td>
-    <td style="width: 58px; height: 58px;">E</td>
-    <td style="width: 58px; height: 58px;">E</td>
-    <td style="width: 58px; height: 58px;">E</td>
-    </tr>
-    <tr>
-    <td style="width: 58px; height: 58px;">S</td>
-    <td style="width: 58px; height: 58px;">N</td>
-    <td style="width: 58px; height: 58px;">J</td>
-    <td style="width: 58px; height: 58px;">S</td>
-    </tr>
-    <tr>
-    <td style="width: 58px; height: 58px;">T</td>
-    <td style="width: 58px; height: 58px;">R</td>
-    <td style="width: 58px; height: 58px;">M</td>
-    <td style="width: 58px; height: 58px;">U</td>
-    </tr>
-    <tr>
-    <td style="width: 58px; height: 58px;">W</td>
-    <td style="width: 58px; height: 58px;">I</td>
-    <td style="width: 58px; height: 58px;">C</td>
-    <td style="width: 58px; height: 58px;">T</td>
-    </tr>
-</tbody>
-*/
+
+
+
