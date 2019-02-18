@@ -1,4 +1,5 @@
 var board;
+var current_text = "";
 
 
 
@@ -19,8 +20,15 @@ $(document).ready(function(){
         load_board(selectedSize);
 		//$('.controls').delay(500).fadeIn();
         $('.game').delay(500).fadeIn();
+        var threeMinutes = 60 * 3, display = $('#time');
+        startTimer(threeMinutes, display);
 	});
 
+
+	$('.game').on('tap','.letter-block',function(){
+        var letter = $(this).attr('id');
+        add_to_word_box(letter);
+	});
 
 	$('.game').on('tap','#submit',function(){
         reset_box();
@@ -36,10 +44,16 @@ $(document).ready(function(){
 
 });
 
+function add_to_word_box(letter) {
+    current_text+=letter;
+    $('#word-box').val(current_text);
+}
+
 
 function reset_box() {
     console.log($('#word-box').val());
     $('#word-box').val('');
+    current_text = "";
 }
 
 
@@ -67,7 +81,7 @@ function load_board(size) {
                 var letter = String.fromCharCode(randValue);
                 board[i][j] = letter;
                 string+='<td>';
-                string+='<a class="letter-block" id="'+letter+'">'+letter+'</a>';
+                string+='<a class="letter-block" href="" id="'+letter+'">'+letter+'</a>';
                 string+='</td>';
             }
             string+='</tr>';
@@ -79,12 +93,23 @@ function load_board(size) {
 
 
     },500)
-
-
-
-
 }
 
 
+function startTimer(duration, display) {
+    var timer = duration, minutes, seconds;
+    setInterval(function () {
+        minutes = parseInt(timer / 60, 10);
+        seconds = parseInt(timer % 60, 10);
 
+        minutes = minutes < 10 ? "0" + minutes : minutes;
+        seconds = seconds < 10 ? "0" + seconds : seconds;
+
+        display.text(minutes + ":" + seconds);
+
+        if (--timer < 0) {
+            timer = duration;
+        }
+    }, 1000);
+}
 
