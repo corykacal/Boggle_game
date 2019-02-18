@@ -13,7 +13,7 @@ $(document).ready(function(){
 
     //Load menu when select 4x4 or 5x5
 	$('.menu').on('tap','.play-btn',function(){
-		$('.menu').delay(200).fadeOut();
+		$('.menu').delay(300).fadeOut();
         //selectedSize is 4 or 5 based on 'size' html tag
 		var selectedSize = parseInt($(this).data("size"));
         load_board(selectedSize);
