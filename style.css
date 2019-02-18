@@ -58,6 +58,28 @@ a, a:link, a:active, a:visited {
     padding-bottom: 50px;
 }
 
+.board {
+    border-collapse: collapse;
+    font-weight: bold;
+    font-size 32px;
+}
+
+.board td {
+    padding: 0;
+    width: 58px;
+    height: 58px;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.board td a {
+    color: black;
+}
+
+
+#submit {
+    background: red;
+}
 
 body {
     font-family: 'Roboto', sans-serif;
