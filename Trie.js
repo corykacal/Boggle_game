@@ -21,7 +21,6 @@ class TrieNode {
     }
 
     add(character) {
-        this.children.push(character);
         this.children[this.getAlphabetValue(character)] = new TrieNode();
     }
 
@@ -56,7 +55,7 @@ class Trie
     }
 
 
-    add(string)
+    add(String)
     {
         var recursiveAdd = function(string, node) {
             if(string.length == 0)
@@ -64,7 +63,8 @@ class Trie
             else
             {
                 var firstLetter = string.charAt(0);
-                node.add(firstLetter);
+                if(!node.contains(firstLetter))
+                    node.add(firstLetter);
                 var newNode = node.get(firstLetter);
                 var newString = string.substring(1, string.length);
                 recursiveAdd(newString, newNode);
@@ -72,7 +72,7 @@ class Trie
 
 
         }
-        recursiveAdd(string, this.rootTrieNode);
+        recursiveAdd(String, this.rootTrieNode);
     }
 
 
@@ -122,7 +122,8 @@ class Trie
 
 let trie = new Trie()
 trie.add("word");
+trie.add("wake");
 console.log(trie.contains("word"));
 console.log(trie.contains("wor"));
 console.log(trie.contains("w"));
-console.log(trie.contains("wa") == false);
+console.log(trie.contains("wake"));
