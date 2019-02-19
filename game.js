@@ -81,7 +81,6 @@ function load_board(size) {
 
 
 
-    setTimeout(function() {
 
         //making the html graphic game board
         var boardHTML = $('.board');
@@ -103,10 +102,6 @@ function load_board(size) {
         string+='</tbody>';
 
         boardHTML.append(string);
-
-
-
-    },500)
 }
 
 
