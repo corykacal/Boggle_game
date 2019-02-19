@@ -12,7 +12,6 @@ $(document).ready(function(){
         //selectedSize is 4 or 5 based on 'size' html tag
 		var selectedSize = parseInt($(this).data("size"));
         load_board(selectedSize);
-		//$('.controls').delay(500).fadeIn();
         $('.game').delay(500).fadeIn();
         var threeMinutes = 60 * 3, display = $('#time');
         startTimer(threeMinutes, display);
@@ -51,7 +50,8 @@ function submit_word() {
  * Adds a letter to the user input box when a circle button is pushed.
  */
 function add_to_word_box(letter) {
-    current_text+=letter.toLowerCase();
+    var string = $('#word-box').val() + letter.toLowerCase();
+    current_text = string;
     $('#word-box').val(current_text);
 }
 
