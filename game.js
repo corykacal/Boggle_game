@@ -40,10 +40,12 @@ $(document).ready(function(){
             reset_box();
         }
     });
-
-
-
 });
+
+function submit_word() {
+    var submittedWord = $('#word-box').val();
+    $('#found-words').append(submittedWord + "<br>");
+}
 
 /*
  * Adds a letter to the user input box when a circle button is pushed.
