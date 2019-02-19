@@ -32,7 +32,6 @@ a, a:link, a:active, a:visited {
   height: 400px;
   margin:auto;
   background: #f2f0cb;
-  position:relative;
   display: block;
   padding-top 100px;
 }
@@ -44,6 +43,7 @@ a, a:link, a:active, a:visited {
     height: 60px;
     text-align: center;
     background: blue;
+    vertical-align: middle;
     padding-top: 15px;
     margin: auto;
     margin-bottom: 10px;
@@ -51,18 +51,23 @@ a, a:link, a:active, a:visited {
 }
 
 .menu {
+    vertical-align: middle;
     display: block;
     width 90%;
     margin: auto;
-    margin-top: 20px;
+    margin-top: 80px;
     background #e1e2e9;
-    padding-bottom: 50px;
+}
+
+.game {
+    margin-top: 80px;
 }
 
 .board {
     border-collapse: collapse;
     font-weight: bold;
     font-size 32px;
+    float: left;
 }
 
 .board td {
@@ -71,6 +76,19 @@ a, a:link, a:active, a:visited {
     height: 58px;
     text-align: center;
     vertical-align: middle;
+}
+
+#found-words {
+    overflow: auto !important;
+    width: 150px;
+    height 15px;
+    line-height: 2em;
+    margin-left: 5px;
+    padding-left: -40px;
+    padding: 5px;
+    background-color: white;
+    border: 3px double #DEBB07;
+    float: right;
 }
 
 #submit-box {
