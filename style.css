@@ -34,6 +34,7 @@ a, a:link, a:active, a:visited {
   background: #f2f0cb;
   display: block;
   padding-top 100px;
+
 }
 
 .play-btn {
@@ -79,20 +80,21 @@ a, a:link, a:active, a:visited {
 }
 
 #found-words {
-    overflow: auto !important;
-    width: 150px;
-    height 15px;
-    line-height: 2em;
-    margin-left: 5px;
-    padding-left: -40px;
-    padding: 5px;
-    background-color: white;
-    border: 3px double #DEBB07;
+    width:150px;
+    height:300px;
+    line-height:1.5em;
+    overflow:scroll;
+    margin-right: 50px;
+    margin-top: 30px;
+    background-color:#FCFADD;
+    color:#714D03;
+    border:4px double #DEBB07;
     float: right;
 }
 
 #submit-box {
     background-color; #686dc9;
+    float:left;
     margin: 10px;
 }
 

@@ -1,15 +1,9 @@
 var board;
 var current_text = "";
 
-
-
-
 $(document).ready(function(){
-	//$('.controls').hide();
-	//$('.result').hide();
-	//$('.howtoplay').hide();
 
-
+    //Hide the game initially
 	$('.game').hide();
 
     //Load menu when select 4x4 or 5x5
@@ -25,17 +19,24 @@ $(document).ready(function(){
 	});
 
 
+    //user clicks on one of the letters
 	$('.game').on('tap','.letter-block',function(){
         var letter = $(this).attr('id');
         add_to_word_box(letter);
 	});
 
+
+
+    //user submits answer through button
 	$('.game').on('tap','#submit',function(){
+        submit_word();
         reset_box();
 	});
 
+    //user submites answer through enter key
     $('#word-box').keypress(function(event) {
         if(event.keyCode == 13 || event.which == 13) {
+            submit_word();
             reset_box();
         }
     });
@@ -44,12 +45,18 @@ $(document).ready(function(){
 
 });
 
+/*
+ * Adds a letter to the user input box when a circle button is pushed.
+ */
 function add_to_word_box(letter) {
     current_text+=letter.toLowerCase();
     $('#word-box').val(current_text);
 }
 
 
+/*
+ * Resets the user input box after they have submitted by button or enter key.
+ */
 function reset_box() {
     console.log($('#word-box').val());
     $('#word-box').val('');
@@ -57,6 +64,11 @@ function reset_box() {
 }
 
 
+/*
+ * Loads the html board of letters into the page.
+ * This needs to be aided by a get letter function eventually that
+ * gets letter based on real boggle probabilities.
+ */
 function load_board(size) {
 
     //making the javascript gameboard
@@ -96,6 +108,9 @@ function load_board(size) {
 }
 
 
+/*
+ * Starts the timer used to let the user know when the game is over
+ */
 function startTimer(duration, display) {
     var timer = duration, minutes, seconds;
     setInterval(function () {
