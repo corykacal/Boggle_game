@@ -63,10 +63,8 @@ function submit_word() {
         //change score, etc
     }
 }
-function isInBounds(position)
+function isInBounds(x,y)
 {
-    var x = position[0];
-    var y = position[1];
     if(x < 0 || x > board.length-1 || y < 0 || y > board.length-1)
     {
         return false;
@@ -89,18 +87,17 @@ function isValidInput(word) {
         }
         else
         {
-            visited[curPos[0], curPos[1]] = true;
+            visited[curPos[0], curPos[1]] = true; //move this
             for(i = 0; i < moves.length; i++)
             {
                 var currentMove = moves[i];
                 var nextX = curPos[0] + currentMove[0];
                 var nextY = curPos[1] + currentMove[1];
-                var nextPos = [nextX, nextY]
-                if(isInBounds(nextPos) && !visited[nextX,nextY])
+                if(isInBounds(nextX,nextY) && !visited[nextX,nextY])
                 {
                     //set visited
                     var nextWord = word.substring(1);
-                    var result = recursiveValid(nextWord, visited, nextPos);
+                    var result = recursiveValid(nextWord, visited, [nextX,nextY]);
                     if(result)
                     {
                         return true;
