@@ -12,6 +12,7 @@ class TrieNode {
 
     constructor() {
         this.children = new Array(26);
+        this.endOfWord = false;
     }
 
 
@@ -42,6 +43,14 @@ class TrieNode {
         return alphabetValue;
     }
 
+    isEndOfWord() {
+        return this.endOfWord;
+    }
+
+    setEndOfWord(bool) {
+        this.endOfWord = bool;
+    }
+
 }
 
 
@@ -59,7 +68,10 @@ class Trie
     {
         var recursiveAdd = function(string, node) {
             if(string.length == 0)
+            {
+                node.setEndOfWord(true);
                 return;
+            }
             else
             {
                 var firstLetter = string.charAt(0);
@@ -84,7 +96,8 @@ class Trie
             //we know string is '' and node is defined
             else if(string.length == 0) {
                 //node has attributes 'isEndOfWord'
-                return true;
+                var bool = node.isEndOfWord();
+                return bool;
             }
             else
             {
@@ -115,15 +128,3 @@ class Trie
 }
 
 
-
-
-
-
-
-let trie = new Trie()
-trie.add("word");
-trie.add("wake");
-console.log(trie.contains("word"));
-console.log(trie.contains("wor"));
-console.log(trie.contains("w"));
-console.log(trie.contains("wake"));

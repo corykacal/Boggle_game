@@ -1,7 +1,22 @@
 var board;
 var current_text = "";
+var dictionary
 
 $(document).ready(function(){
+
+    var dictionary = new Trie();
+
+    $.getJSON("dictionary.json", function(json)
+    {
+        var word;
+            for(var index in json)
+            {
+                word = json[index];
+                dictionary.add(word);
+            }
+    });
+
+
 
     //Hide the game initially
 	$('.game').hide();
@@ -43,7 +58,76 @@ $(document).ready(function(){
 
 function submit_word() {
     var submittedWord = $('#word-box').val();
-    $('#found-words').append(submittedWord + "<br>");
+    if(isValidInput(submittedWord)) {
+        $('#found-words').append(submittedWord + "<br>");
+        //change score, etc
+    }
+}
+function isInBounds(position)
+{
+    var x = position[0];
+    var y = position[1];
+    if(x < 0 || x > board.length-1 || y < 0 || y > board.length-1)
+    {
+        return false;
+    }
+    return true;
+
+}
+
+function isValidInput(word) {
+    var moves = [[1,0],[-1,0],[0,1],[0,-1],[1,-1],[-1,1],[1,1],[-1,-1]];
+    var recursiveValid = function(word, visited, curPos)
+    {
+        if(word.length == 0)
+        {
+            return true;
+        }
+        if(word.charAt(0)!=board[curPos[0], curPos[1]])
+        {
+            return false;
+        }
+        else
+        {
+            visited[curPos[0], curPos[1]] = true;
+            for(i = 0; i < moves.length; i++)
+            {
+                var currentMove = moves[i];
+                var nextX = curPos[0] + currentMove[0];
+                var nextY = curPos[1] + currentMove[1];
+                var nextPos = [nextX, nextY]
+                if(isInBounds(nextPos) && !visited[nextX,nextY])
+                {
+                    //set visited
+                    var nextWord = word.substring(1);
+                    var result = recursiveValid(nextWord, visited, nextPos);
+                    if(result)
+                    {
+                        return true;
+                    }
+                }
+            }
+        }
+        return false;
+    }
+
+    var booleanArray = new Array(board.length);
+    for(x = 0; x < board.length; x++)
+    {
+        booleanArray[x] = new Array(board.length).fill(false);
+    }
+    console.log(booleanArray);
+    for(i = 0; i < board.length; i++)
+    {
+        for(j = 0; j < board.length; j++)
+        {
+            var letter = board[i][j];
+            if(letter == word.charAt(0))
+            {
+                recursiveValid(word.substring(1), booleanArray, [i, j]);
+            }
+        }
+    }
 }
 
 /*
@@ -124,4 +208,29 @@ function startTimer(duration, display) {
         }
     }, 1000);
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
